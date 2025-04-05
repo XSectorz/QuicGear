@@ -5,5 +5,6 @@ export class User {
     firstName: string = '';
     lastName: string = ''
     emailID: string = '';
+    balance: number = 0;
 
 }

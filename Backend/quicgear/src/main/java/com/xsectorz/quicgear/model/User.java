@@ -33,16 +33,19 @@ public class User {
     @Column(name = "email")
     private String emailID;
 
+    @Column(name = "balance")
+    private double balance = 0;
 
     public User() {
 
     }
 
-    public User(UserRole userRole, String firstName, String lastName, String emailID) {
+    public User(UserRole userRole, String firstName, String lastName, String emailID, double balance) {
         this.userRole = userRole;
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailID = emailID;
+        this.balance = balance;
     }
     public long getId() {
         return id;
@@ -50,6 +53,15 @@ public class User {
     public void setId(long id) {
         this.id = id;
     }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public double getBalance() {
+        return this.balance;
+    }
+    
     public UserRole getUserRole() {
         return userRole;
     }

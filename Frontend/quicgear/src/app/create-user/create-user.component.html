@@ -1,0 +1,57 @@
+<h3>Create User</h3>
+<form (ngSubmit)="onSubmit()" #userForm="ngForm">
+  <div class="form-group">
+    <label for="firstName">Firstname:</label>
+    <input
+      type="text"
+      id="firstName"
+      class="form-control"
+      name="firstName"
+      [(ngModel)]="user.firstName"
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="lastName">Lastname:</label>
+    <input
+      type="lastName"
+      id="lastName"
+      class="form-control"
+      name="lastName"
+      [(ngModel)]="user.lastName"
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input
+      type="email"
+      id="email"
+      class="form-control"
+      name="email"
+      [(ngModel)]="user.emailID"
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="userRole">User Role:</label>
+    <select
+      id="userRole"
+      class="form-control"
+      name="userRole"
+      [(ngModel)]="user.userRole"
+      required
+    >
+      <option value="">Select Role</option>
+      <option value="ADMIN">Admin</option>
+      <option value="USER">User</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="!userForm.form.valid">
+    Create User
+  </button>
+</form>
