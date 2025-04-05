@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-QuicgearApplication<quicgear>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.xsectorz.quicgear.QuicgearApplication",
+            "projectName": "quicgear",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
