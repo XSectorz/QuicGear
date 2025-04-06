@@ -22,16 +22,16 @@ public class User {
 
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
-    private UserRole userRole;
+    private UserRole userRole = UserRole.USER;
 
-    @Column(name = "first_name")
-    private String firstName;
+    @Column(name = "username")
+    private String username;
 
-    @Column(name = "last_name")
-    private String lastName;
+    @Column(name = "password")
+    private String password;
 
     @Column(name = "email")
-    private String emailID;
+    private String email;
 
     @Column(name = "balance")
     private double balance = 0;
@@ -40,11 +40,11 @@ public class User {
 
     }
 
-    public User(UserRole userRole, String firstName, String lastName, String emailID, double balance) {
+    public User(UserRole userRole, String username, String password, String email, double balance) {
         this.userRole = userRole;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.emailID = emailID;
+        this.username = username;
+        this.password = password;
+        this.email = email;
         this.balance = balance;
     }
     public long getId() {
@@ -68,23 +68,25 @@ public class User {
     public void setUserRole(UserRole userRole) {
         this.userRole = userRole;
     }
-    public String getFirstName() {
-        return firstName;
+    public String getUsername() {
+        return username;
     }
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public String getPassword() {
+        return password;
     }
-    public String getLastName() {
-        return lastName;
+    public String getEmail() {
+        return email;
     }
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setEmail(String email) {
+        this.email = email;
     }
-    public String getEmailID() {
-        return emailID;
+
+    public void setUsername(String username) {
+        this.username = username;
     }
-    public void setEmailID(String emailID) {
-        this.emailID = emailID;
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 

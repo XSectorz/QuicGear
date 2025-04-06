@@ -3,7 +3,6 @@ package com.xsectorz.quicgear.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +15,6 @@ import com.xsectorz.quicgear.repository.UserRepository;
 
 
 @RestController
-@CrossOrigin
 @RequestMapping("/api/v1/")
 public class UserController {
 
@@ -27,6 +25,11 @@ public class UserController {
     @GetMapping("/users")
     public List<User> getAllUser() {
         return userRepository.findAll();
+    }
+
+    @GetMapping("/messages")
+    public String getDemo() {
+        return "Hello This is test from backend";
     }
 
 

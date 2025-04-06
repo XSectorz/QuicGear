@@ -2,15 +2,15 @@
 <table class="">
     <thead>
         <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>username</th>
+            <th>balance</th>
             <th>Email Id</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor = "let user of users">
-            <td>{{ user.firstName }}</td>
-            <td>{{ user.lastName }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.balance }}</td>
             <td>{{ user.emailID }}</td>
         </tr>
     </tbody>

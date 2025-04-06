@@ -16,7 +16,6 @@ export class CreateUserComponent {
 
   constructor(private userService: UserService,private router: Router) {}
 
-
   saveUser() {
     this.userService.createUser(this.user).subscribe(data => {
       console.log(data);
