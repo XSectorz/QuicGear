@@ -1,6 +1,9 @@
 <div>
-    <app-login 
+    <app-login *ngIf="componentToShow == 'login'"
         (onSubmitLoginEvent)="onLogin($event)"
         (onSubmitRegisterEvent)="onRegister($event)"
     />
+    <div  *ngIf="componentToShow == 'main'" class="flex">
+        Hello Welcome
+    </div>
 </div>
