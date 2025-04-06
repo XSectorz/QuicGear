@@ -13,7 +13,7 @@ public class UserDto {
 
     private Long id;
     private String username;
-    private String login;
+    private double balance;
     private String token;
 
 }
