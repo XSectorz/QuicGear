@@ -5,9 +5,16 @@
 
 package com.xsectorz.quicgear.controller;
 
-import org.springframework.beans.factory.annotation.Value;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.xsectorz.quicgear.model.Product;
+import com.xsectorz.quicgear.repository.ProductRepository;
+
 
 
 /**
@@ -16,16 +23,18 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
+@RequestMapping("/api/v1/")
 public class ProductController {
 
 
-    @Value("${server.port}")
-    int port;
+    @Autowired
+    private ProductRepository productRepository;
 
-    @GetMapping("/product")
-    public String demo() {
-        return "port " + port;
+    @GetMapping("/products")
+    public List<Product> getAllProduct() {
+        return productRepository.findAll();
     }
+    
     
 
 }

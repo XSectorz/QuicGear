@@ -1,9 +1,13 @@
+
 <div>
+
     <app-login *ngIf="appStateService.getComponentToShow() == 'login'"
         (onSubmitLoginEvent)="onLogin($event)"
-        (onSubmitRegisterEvent)="onRegister($event)"
-    />
-    <div *ngIf="appStateService.getComponentToShow() == 'main'" class="flex mt-5">
+        (onSubmitRegisterEvent)="onRegister($event)">
+    </app-login>
+
+    <div *ngIf="appStateService.getComponentToShow() == 'main'" class="flex flex-col w-full mt-5 justify-center items-center">
+  
         <div class="w-full flex justify-center items-center cursor-pointer">
             <owl-carousel-o [options]="carouselOptions" class="w-[90%] rounded-md shadow-md overflow-hidden">
               <ng-template carouselSlide *ngFor="let image of carouselImages">
@@ -11,12 +15,18 @@
                   <img
                     [src]="image"
                     class="w-full h-full object-cover object-center transition-transform duration-500 ease-in-out hover:scale-105"
-                    alt="Carousel Image"
-                  />
+                    alt="Carousel Image">
                 </div>
               </ng-template>
             </owl-carousel-o>
           </div>
-          
+
+        <!-- Product List Section -->
+        <div class="flex w-full justify-center items-center mt-5">
+            <div class="flex w-[90%]">
+                <app-product-list></app-product-list>
+            </div>
+        </div>
     </div>
-</div>
+  </div>
+  

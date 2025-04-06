@@ -5,10 +5,11 @@ import { CommonModule } from '@angular/common';
 import { User } from '../model/user';
 import { StateService } from '../state.service';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { ProductListComponent } from '../product-list/product-list.component';
 
 @Component({
   selector: 'app-content',
-  imports: [LoginComponent,CommonModule,CarouselModule],
+  imports: [LoginComponent,CommonModule,CarouselModule,ProductListComponent],
   templateUrl: './content.component.html',
   styleUrl: './content.component.css'
 })
@@ -30,9 +31,9 @@ export class ContentComponent {
   
   carouselOptions: any = {
     loop: true,
-    mouseDrag: false,
-    touchDrag: false,
-    pullDrag: false,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
     dots: false,
     navSpeed: 1000,  
     navText: ['', ''],
@@ -53,7 +54,8 @@ export class ContentComponent {
     nav: false,
     autoplay: true,          
     autoplayTimeout: 5000,  
-    autoplaySpeed: 1000,     
+    autoplaySpeed: 1000,
+    autoHeight: false
   };
 
   onLogin(input: any): void {
