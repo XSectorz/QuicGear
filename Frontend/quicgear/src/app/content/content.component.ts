@@ -4,10 +4,11 @@ import { LoginComponent } from '../login/login.component';
 import { CommonModule } from '@angular/common';
 import { User } from '../model/user';
 import { StateService } from '../state.service';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-content',
-  imports: [LoginComponent,CommonModule],
+  imports: [LoginComponent,CommonModule,CarouselModule],
   templateUrl: './content.component.html',
   styleUrl: './content.component.css'
 })
@@ -16,16 +17,44 @@ export class ContentComponent {
   constructor(private axiosService: AxiosService, public appStateService: StateService) {}
 
   user!: User;
-/*
-  ngOnInit(): void {
-    this.appStateService.componentToShow$.subscribe((component) => {
-      console.log("Component to show in ContentComponent: ", component);
-    });
-  }*/
 
   showComponent(componentToShow: string): void {
     this.appStateService.setComponentToShow(componentToShow);
   }
+
+  carouselImages: string[] = [
+    'banner-1.jpg',
+    'banner-2.jpg',
+    'banner-3.jpg'
+  ];
+  
+  carouselOptions: any = {
+    loop: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
+    dots: false,
+    navSpeed: 1000,  
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 1
+      },
+      740: {
+        items: 1
+      },
+      940: {
+        items: 1
+      }
+    },
+    nav: false,
+    autoplay: true,          
+    autoplayTimeout: 5000,  
+    autoplaySpeed: 1000,     
+  };
 
   onLogin(input: any): void {
     this.axiosService.request(

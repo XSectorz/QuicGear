@@ -8,10 +8,12 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import { LoginComponent } from './login/login.component';
 import { ContentComponent } from './content/content.component';
 import { FormsModule } from '@angular/forms'
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, UserListComponent, CreateUserComponent,LoginComponent,ContentComponent],
-  imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes)],
+  imports: [BrowserModule, FormsModule, CarouselModule,BrowserAnimationsModule, RouterModule.forRoot(routes)],
   providers: [],
   bootstrap: [AppComponent]
 })
