@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { AxiosService } from '../axios.service';
 import { LoginComponent } from '../login/login.component';
 import { CommonModule } from '@angular/common';
-import { response } from 'express';
+import { User } from '../model/user';
+import { StateService } from '../state.service';
 
 @Component({
   selector: 'app-content',
@@ -12,12 +13,18 @@ import { response } from 'express';
 })
 export class ContentComponent {
 
-  constructor(private axiosService: AxiosService) {}
+  constructor(private axiosService: AxiosService, public appStateService: StateService) {}
 
-  componentToShow: string = "login";
+  user!: User;
+/*
+  ngOnInit(): void {
+    this.appStateService.componentToShow$.subscribe((component) => {
+      console.log("Component to show in ContentComponent: ", component);
+    });
+  }*/
 
   showComponent(componentToShow: string): void {
-    this.componentToShow = componentToShow;
+    this.appStateService.setComponentToShow(componentToShow);
   }
 
   onLogin(input: any): void {
@@ -29,8 +36,17 @@ export class ContentComponent {
         password: input.password
       }
     ).then(response => {
+
+      this.user = {
+        id: response.data.id,
+        username: response.data.username,
+        balance: response.data.balance,
+        userRole: response.data.userRole,
+        email: response.data.email
+      }
+
       this.axiosService.setAuthToken(response.data.token);
-      this.componentToShow = "main";
+      this.showComponent("main");
     })
   }
 
@@ -45,7 +61,7 @@ export class ContentComponent {
       }
     ).then(response => {
       this.axiosService.setAuthToken(response.data.token);
-      this.componentToShow = "main";
+      this.showComponent("main");
     })
   }
 

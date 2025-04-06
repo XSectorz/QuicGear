@@ -1,9 +1,10 @@
 <div>
-    <app-login *ngIf="componentToShow == 'login'"
+    <app-login *ngIf="appStateService.getComponentToShow() == 'login'"
         (onSubmitLoginEvent)="onLogin($event)"
         (onSubmitRegisterEvent)="onRegister($event)"
     />
-    <div  *ngIf="componentToShow == 'main'" class="flex">
-        Hello Welcome
+    <div *ngIf="appStateService.getComponentToShow() == 'main'" class="flex">
+        <p>Hello, Welcome {{ user.username }}</p>
+        <p>Your balance: {{ user.balance }}</p>
     </div>
 </div>

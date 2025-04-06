@@ -19,10 +19,6 @@ export class UserListComponent {
 
   ngOnInit(): void {
 
-   /* this.users = [
-      { "id": 1, "userRole": "USER", "firstName": 'Alice', "lastName": 'Smith', "emailID": 'alice@example.com' }
-    ];*/
-
     this.getUsers();
 
   }

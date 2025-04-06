@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.xsectorz.quicgear.dto.UserDto;
 import com.xsectorz.quicgear.exception.AppException;
@@ -62,14 +63,21 @@ public class UserAuthProvider {
     }
 
     public Authentication validateTokenStrongly(String token) {
-        Algorithm algorithm = Algorithm.HMAC256(secretKey);
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(secretKey);
+            JWTVerifier verifier = JWT.require(algorithm).build();
+            DecodedJWT decodedJWT = verifier.verify(token);
 
-        JWTVerifier verifier = JWT.require(algorithm).build();
-        DecodedJWT decodedJWT = verifier.verify(token);
-        
-        User user = userRepository.findByUsername(decodedJWT.getIssuer())
-        .orElseThrow(() -> new AppException("Unknow user", HttpStatus.NOT_FOUND));
+            User user = userRepository.findByUsername(decodedJWT.getIssuer())
+                    .orElseThrow(() -> new AppException("Unknown user", HttpStatus.NOT_FOUND));
 
-        return new UsernamePasswordAuthenticationToken(userMapper.toUserDto(user), null, Collections.emptyList());
+            return new UsernamePasswordAuthenticationToken(userMapper.toUserDto(user), null, Collections.emptyList());
+        } catch (TokenExpiredException e) {
+
+            throw new AppException("Token expired. Please log in again.", HttpStatus.UNAUTHORIZED);
+        } catch (Exception e) {
+
+            throw new AppException("Token validation failed", HttpStatus.BAD_REQUEST);
+        }
     }
 }
