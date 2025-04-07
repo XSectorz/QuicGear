@@ -23,9 +23,9 @@ public class Product {
     public Product() {
 
     }
-    
+
     public Product(long id, String productName, String productDescription, String productImage, ProductType productType,
-            double productPrice, int productRating, int productRatingCount) {
+            double productPrice, int productRating, int productRatingCount, int productStock, String productColor) {
         this.id = id;
         this.productName = productName;
         this.productDescription = productDescription;
@@ -34,11 +34,16 @@ public class Product {
         this.productPrice = productPrice;
         this.productRating = productRating;
         this.productRatingCount = productRatingCount;
+        this.productStock = productStock;
+        this.productColor = productColor;
     }
+
+
 
     @Column(name = "product_name")
     private String productName;
 
+    @Lob
     @Column(name = "product_description")
     private String productDescription;
 
@@ -58,6 +63,33 @@ public class Product {
 
     @Column(name = "product_rating_count")
     private int productRatingCount;
+
+    @Column(name = "product_stock")
+    private int productStock;
+
+    @Column(name = "product_colors")
+    private String productColor;
+
+
+    public int getProductStock() {
+        return productStock;
+    }
+
+
+    public void setProductStock(int productStock) {
+        this.productStock = productStock;
+    }
+
+
+    public String getProductColor() {
+        return productColor;
+    }
+
+
+    public void setProductColor(String productColor) {
+        this.productColor = productColor;
+    }
+
 
     public long getId() {
         return id;
